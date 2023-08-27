@@ -28,7 +28,7 @@
                                             <th>Checque</th>
                                             <th>CashOnHand</th>
                                             <th>Short/Over</th>
-                                            <th>Edit</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -181,12 +181,7 @@
                     { data: "cheque" },
                     { data: "cash_on_hand" },
                     { data: "short_over" },
-                    {
-                        data: null,
-                        render: function (data, type, row) {
-                            return '<a href="" class="btn btn-sm btn-primary">Edit</a>';
-                        }
-                    }
+
                 ]
             });
             function formatNumber(number) {
