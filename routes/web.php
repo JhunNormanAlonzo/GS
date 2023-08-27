@@ -64,5 +64,6 @@ Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function
     Route::resource('/branch', BranchController::class)->names('branch');
     Route::resource('/branch-head', BranchHeadController::class)->names('branch-head');
     Route::get('/collection/data', [AdminCollectionController::class, 'data'])->name('collection.data');
+    Route::resource('/modify', ModifyRequestController::class)->names('modify');
     Route::resource('/collection', AdminCollectionController::class)->names('collection');
 });

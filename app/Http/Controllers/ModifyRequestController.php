@@ -10,6 +10,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ModifyRequestController extends Controller
 {
+
+    public function index()
+    {
+        $modifies = ModifyRequest::orderBy('updated_at', 'desc')->get();
+        return view("admin.collection.modify", compact('modifies'));
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [

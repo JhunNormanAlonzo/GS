@@ -39,6 +39,13 @@
           <span>Collection Report</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('admin.modify.index')}}">
+          <i class="bi bi-clock "></i>
+          <span>Change Logs</span>
+        </a>
+      </li>
       @endrole
 
       @role('branch-head')
