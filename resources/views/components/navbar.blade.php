@@ -1,10 +1,18 @@
   <!-- ======= Header ======= -->
+  @php
+    use App\SysConf\Configuration;
+    $sys = new Configuration('SYSTEM/system_config.json');
+    $config = $sys->config;
+    $conf_company_name = $config['system_config']['company_name'];
+    $conf_logo = $config['system_config']['logo'];
+    $conf_year = $config['system_config']['year'];
+@endphp
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{route('admin.dashboard.index')}}" class="logo d-flex align-items-center">
-        <img src="{{asset('NiceAdmin/assets/img/logo.png')}}" alt="">
-        <span class="d-none d-lg-block">Cashier Report</span>
+        <img src="{{asset('img/logo.png')}}" alt="">
+        <span class="d-none d-lg-block">{{$conf_company_name}}</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

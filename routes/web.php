@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminCollectionController;
+use App\Http\Controllers\AdminConfigController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminNotificationController;
 use App\Http\Controllers\BranchController;
@@ -63,6 +64,8 @@ Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function
     Route::resource('/dashboard', AdminDashboardController::class)->names('dashboard');
     Route::resource('/branch', BranchController::class)->names('branch');
     Route::resource('/branch-head', BranchHeadController::class)->names('branch-head');
+    Route::put('/config/update_config', [AdminConfigController::class, 'updateConfig'])->name('config.update_config');
+    Route::resource('/config', AdminConfigController::class)->names('config');
     Route::get('/collection/data', [AdminCollectionController::class, 'data'])->name('collection.data');
     Route::resource('/modify', ModifyRequestController::class)->names('modify');
     Route::resource('/collection', AdminCollectionController::class)->names('collection');

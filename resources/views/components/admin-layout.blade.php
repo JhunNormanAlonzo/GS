@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
+@php
+    use App\SysConf\Configuration;
+    $sys = new Configuration('SYSTEM/system_config.json');
+    $config = $sys->config;
+    $conf_company_name = $config['system_config']['company_name'];
+    $conf_logo = $config['system_config']['logo'];
+    $conf_year = $config['system_config']['year'];
+@endphp
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{{ config('app.name') }} </title>
+  <title>{{ $conf_company_name }} </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 

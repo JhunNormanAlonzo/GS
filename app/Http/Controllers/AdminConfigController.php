@@ -1,24 +1,24 @@
 <?php
 
+
+
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
-use App\Models\Collection;
+use App\SysConf\Configuration;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use RealRashid\SweetAlert\Facades\Alert;
 
-class AdminDashboardController extends Controller
+class AdminConfigController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $branches = Branch::all();
-        $branch_heads = Role::where('name', 'branch-head')->first()->users;
-        $total_collections = Collection::all();
 
-        return view('admin.dashboard', compact('branches', 'branch_heads', 'total_collections'));
+        $sys = new Configuration('SYSTEM/system_config.json');
+        $config = $sys->config;
+        return view('admin.system.index', compact('config'));
     }
 
     /**
@@ -67,5 +67,25 @@ class AdminDashboardController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function updateConfig(Request $request)
+    {
+        $this->validate($request, [
+            'company_name' => 'required',
+            'logo' => 'required',
+            'year' => 'required'
+        ]);
+        $sys = new Configuration('SYSTEM/system_config.json');
+        $sys->config['system_config']['company_name'] = $request->company_name;
+        $sys->config['system_config']['logo'] = $request->logo;
+        $sys->config['system_config']['year'] = $request->year;
+        $sys->save();
+
+
+        Alert::alert('Success', 'Updated Successfully!', 'success')
+            ->autoClose(3000);
+
+        return redirect()->route('admin.config.index');
     }
 }

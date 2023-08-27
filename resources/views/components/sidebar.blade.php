@@ -46,6 +46,13 @@
           <span>Change Logs</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('admin.config.index')}}">
+          <i class="bi bi-command "></i>
+          <span>Configuration</span>
+        </a>
+      </li>
       @endrole
 
       @role('branch-head')
