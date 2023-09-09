@@ -1,22 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Branch;
-use App\Models\Collection;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 
-class AdminDashboardController extends Controller
+class SectionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-
-        return view('admin.index');
+        //
     }
 
     /**

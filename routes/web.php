@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminCollectionController;
+use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\SubjectController;
+use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\YearLevelController;
 use App\Http\Controllers\AdminConfigController;
 use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\AdminNotificationController;
-use App\Http\Controllers\BranchController;
+
+
 use App\Http\Controllers\BranchHeadController;
 use App\Http\Controllers\BranchHeadDashboardController;
 use App\Http\Controllers\BranchHeadNotificationController;
@@ -12,6 +16,7 @@ use App\Http\Controllers\CashierController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ModifyRequestController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,36 +42,31 @@ Route::middleware(['auth'])->group(function () {
         $role = auth()->user()->getRoleNames()->first();
         if ($role == 'admin') {
             return redirect()->route('admin.dashboard.index');
-        } else if ($role == 'branch-head') {
-            return redirect()->route('branch-head.dashboard.index');
+        } else if ($role == 'teacher') {
+            return redirect()->route('teacher.dashboard.index');
+        } else if ($role == 'student') {
+            return redirect()->route('student.dashboard.index');
         }
     })->name('home');
 });
 
 
 
-Route::prefix('/branch-head/')->as('branch-head.')->middleware('role:branch-head')->group(function () {
-    Route::get('/notification/act/{act_request}', [BranchHeadNotificationController::class, 'actRequest'])->name('notification.act_request');
-    Route::get('/notification/pending', [BranchHeadNotificationController::class, 'getPending'])->name('notification.pending');
-    Route::put('/collection/update_request/{collection_id}/{id}', [CollectionController::class, 'updateRequest'])->name('collection.update_request');
-    Route::resource('/dashboard', BranchHeadDashboardController::class)->names('dashboard');
-    Route::resource('/collection', CollectionController::class)->names('collection');
-    Route::resource('/modify-request', ModifyRequestController::class)->names('modify-request');
-    Route::resource('/cashier', CashierController::class)->names('cashier');
-});
+
 
 Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function () {
+    Route::resource('teacher', TeacherController::class)->names('teacher');
+    Route::resource('student', StudentController::class)->names('student');
+    Route::resource('section', SectionController::class)->names('section');
+    Route::resource('year-level', YearLevelController::class)->names('year-level');
+    Route::resource('subject', SubjectController::class)->names('subject');
+    Route::resource('report', Report::class)->names('report');
+    Route::resource('dashboard', AdminDashboardController::class)->names('dashboard');
+});
 
-    Route::put('/notification/act/approve/{act_request}', [AdminNotificationController::class, 'actRequestApprove'])->name('notification.act_request.approve');
-    Route::put('/notification/act/decline/{act_request}', [AdminNotificationController::class, 'actRequestDecline'])->name('notification.act_request.decline');
-    Route::get('/notification/act/{act_request}', [AdminNotificationController::class, 'actRequest'])->name('notification.act_request');
-    Route::get('/notification/pending', [AdminNotificationController::class, 'getPending'])->name('notification.pending');
-    Route::resource('/dashboard', AdminDashboardController::class)->names('dashboard');
-    Route::resource('/branch', BranchController::class)->names('branch');
-    Route::resource('/branch-head', BranchHeadController::class)->names('branch-head');
-    Route::put('/config/update_config', [AdminConfigController::class, 'updateConfig'])->name('config.update_config');
-    Route::resource('/config', AdminConfigController::class)->names('config');
-    Route::get('/collection/data', [AdminCollectionController::class, 'data'])->name('collection.data');
-    Route::resource('/modify', ModifyRequestController::class)->names('modify');
-    Route::resource('/collection', AdminCollectionController::class)->names('collection');
+
+Route::prefix('/teacher/')->as('teacher.')->middleware('role:teacher')->group(function () {
+});
+
+Route::prefix('/student/')->as('student.')->middleware('role:student')->group(function () {
 });

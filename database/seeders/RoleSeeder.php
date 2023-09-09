@@ -18,7 +18,11 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => 'branch-head',
+            'name' => 'teacher',
+        ]);
+
+        Role::create([
+            'name' => 'student',
         ]);
     }
 }

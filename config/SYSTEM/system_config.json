@@ -1,1 +1,7 @@
-{"system_config":{"company_name":"Cashier Report","logo":"logo.png","year":"2024"}}
+{
+    "system_config": {
+        "company_name": "BNATS",
+        "logo": "bnats_logo.png",
+        "year": "2024"
+    }
+}
