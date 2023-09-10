@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\YearLevel;
 use Illuminate\Http\Request;
 
 class YearLevelController extends Controller
@@ -12,7 +13,9 @@ class YearLevelController extends Controller
      */
     public function index()
     {
-        //
+        $year_levels = YearLevel::all();
+        showConfirmDelete();
+        return view('admin.year-level.index', compact('year_levels'));
     }
 
     /**
@@ -20,7 +23,7 @@ class YearLevelController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.year-level.create');
     }
 
     /**
@@ -28,7 +31,18 @@ class YearLevelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:year_levels,name'
+        ]);
+
+        $year_level = YearLevel::create([
+            'name' => $request->name
+        ]);
+
+        if ($year_level) {
+            showAlert("Created");
+            return redirect()->route('admin.year-level.index');
+        }
     }
 
     /**
@@ -44,6 +58,8 @@ class YearLevelController extends Controller
      */
     public function edit(string $id)
     {
+        $year_level = YearLevel::find($id);
+        return view("admin.year-level.edit", compact("year_level"));
         //
     }
 
@@ -52,7 +68,20 @@ class YearLevelController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $year_level = YearLevel::find($id);
+
+        $this->validate($request, [
+            'name' => 'required|unique:year_levels,name,' . $id
+        ]);
+
+        $year_level->update([
+            'name' => $request->name
+        ]);
+
+        if ($year_level) {
+            showAlert("Updated");
+            return redirect()->route('admin.year-level.index');
+        }
     }
 
     /**
@@ -60,6 +89,10 @@ class YearLevelController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $year_level = YearLevel::find($id);
+        if ($year_level->delete()) {
+            showAlert("Deleted");
+            return redirect()->route('admin.year-level.index');
+        }
     }
 }

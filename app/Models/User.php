@@ -35,11 +35,37 @@ class User extends Authenticatable
         return $this->belongsTo(Branch::class);
     }
 
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class);
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
     public function collections()
     {
         return $this->hasMany(Collection::class);
     }
 
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class, 'teacher_subjects');
+    }
     /**
      * The attributes that should be cast.
      *

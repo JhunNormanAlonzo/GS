@@ -15,6 +15,11 @@ use App\Http\Controllers\BranchHeadNotificationController;
 use App\Http\Controllers\CashierController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ModifyRequestController;
+use App\Http\Controllers\TeacherDashboardController;
+use App\Http\Controllers\TeacherStudentController;
+use App\Http\Controllers\TeacherSubjectController;
+use App\Models\Section;
+use App\Models\TeacherSubject;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
@@ -55,17 +60,22 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function () {
-    Route::resource('teacher', TeacherController::class)->names('teacher');
-    Route::resource('student', StudentController::class)->names('student');
-    Route::resource('section', SectionController::class)->names('section');
-    Route::resource('year-level', YearLevelController::class)->names('year-level');
-    Route::resource('subject', SubjectController::class)->names('subject');
-    Route::resource('report', Report::class)->names('report');
-    Route::resource('dashboard', AdminDashboardController::class)->names('dashboard');
+    Route::get('/get-sections/year-level/{year_level_id}', [SectionController::class, 'getWhereYearLevel'])->name('get-section.year-level');
+    Route::resource('/teacher-subject', TeacherSubjectController::class)->names('teacher-subject');
+    Route::resource('/teacher', TeacherController::class)->names('teacher');
+    Route::resource('/student', StudentController::class)->names('student');
+    Route::resource('/section', SectionController::class)->names('section');
+    Route::resource('/year-level', YearLevelController::class)->names('year-level');
+    Route::resource('/subject', SubjectController::class)->names('subject');
+    Route::resource('/report', Report::class)->names('report');
+    Route::resource('/dashboard', AdminDashboardController::class)->names('dashboard');
 });
 
 
 Route::prefix('/teacher/')->as('teacher.')->middleware('role:teacher')->group(function () {
+    Route::get('/teacher-student/subject/{subject_id}', [TeacherStudentController::class, 'viewStudentOfSubject'])->name('teacher-student.subject');
+    Route::resource('/teacher-student', TeacherStudentController::class)->names('teacher-student');
+    Route::resource('/dashboard', TeacherDashboardController::class)->names('dashboard');
 });
 
 Route::prefix('/student/')->as('student.')->middleware('role:student')->group(function () {

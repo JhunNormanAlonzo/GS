@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('year_level_id');
             $table->string('name');
             $table->timestamps();
+            $table->foreign('year_level_id')->references('id')->on('year_levels')->onDelete('cascade');
         });
     }
 

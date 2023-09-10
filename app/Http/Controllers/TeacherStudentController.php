@@ -2,36 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
-use App\Models\Collection;
-use App\Models\Section;
 use App\Models\Student;
 use App\Models\Subject;
-use App\Models\Teacher;
-use App\Models\YearLevel;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 
-class AdminDashboardController extends Controller
+class TeacherStudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        //
+    }
 
-        $students = Student::all();
-        $teachers = Teacher::all();
-        $sections = Section::all();
-        $yearlevels = YearLevel::all();
-        $subjects = Subject::all();
-        return view('admin.index', compact(
-            'students',
-            'teachers',
-            'sections',
-            'yearlevels',
-            'subjects',
-        ));
+    public function viewStudentOfSubject($subject_id)
+    {
+        $subject = Subject::find($subject_id);
+
+        $students = Student::where('year_level_id', $subject->year_level_id)->get();
+        return view('teacher.student.index', compact('students'));
     }
 
     /**

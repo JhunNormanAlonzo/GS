@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Subject;
+use App\Models\YearLevel;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -12,7 +14,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = Subject::all();
+        showConfirmDelete();
+        return view('admin.subject.index', compact('subjects'));
     }
 
     /**
@@ -20,7 +24,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        $year_levels = YearLevel::all();
+        return view('admin.subject.create', compact('year_levels'));
     }
 
     /**
@@ -28,7 +33,25 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'year_level_id' => 'required',
+            'code' => 'required|unique:subjects,code,NULL,id,year_level_id,' . $request->year_level_id,
+            'name' => 'required'
+        ], [
+            'year_level_id.required' => 'The year level is required.',
+            'code.unique' => 'The code must be unique for the selected year level.',
+        ]);
+
+        $year_level = Subject::create([
+            'year_level_id' => $request->year_level_id,
+            'code' => $request->code,
+            'name' => $request->name
+        ]);
+
+        if ($year_level) {
+            showAlert("Created");
+            return redirect()->route('admin.subject.index');
+        }
     }
 
     /**
@@ -44,7 +67,9 @@ class SubjectController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $subject = Subject::find($id);
+        $year_levels = YearLevel::all();
+        return view("admin.subject.edit", compact("subject", "year_levels"));
     }
 
     /**
@@ -52,7 +77,22 @@ class SubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $subject = Subject::find($id);
+
+        $this->validate($request, [
+            'code' => 'required|unique:subjects,code,' . $id,
+            'name' => 'required'
+        ]);
+
+        $subject->update([
+            'code' => $request->code,
+            'name' => $request->name
+        ]);
+
+        if ($subject) {
+            showAlert("Updated");
+            return redirect()->route('admin.subject.index');
+        }
     }
 
     /**
@@ -60,6 +100,10 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $subject = Subject::find($id);
+        if ($subject->delete()) {
+            showAlert("Deleted");
+            return redirect()->route('admin.subject.index');
+        }
     }
 }
