@@ -16,7 +16,7 @@
                         <i class="bi bi-people"></i>
                         </div>
                         <div class="ps-3">
-                        <h6>123</h6>
+                            <h6>{{$teachers->count()}}</h6>
 
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                    <h6>123</h6>
+                        <h6>{{$students->count()}}</h6>
                     </div>
                 </div>
                 </div>
@@ -50,7 +50,7 @@
                         <i class="bi bi-card-checklist"></i>
                     </div>
                     <div class="ps-3">
-                        <h6>123</h6>
+                        <h6>{{$sections->count()}}</h6>
                     </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                         <i class="bi bi-house-gear"></i>
                     </div>
                     <div class="ps-3">
-                        <h6>123</h6>
+                        <h6>{{$yearlevels->count()}}</h6>
                     </div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                         <i class="bi bi-book"></i>
                     </div>
                     <div class="ps-3">
-                        <h6>123</h6>
+                        <h6>{{$subjects->count()}}</h6>
                     </div>
                     </div>
                 </div>
