@@ -19,7 +19,7 @@
         @endrole
 
         @role('student')
-            <a class="nav-link " href="#">
+        <a class="nav-link " href="{{route('student.dashboard.index')}}">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>

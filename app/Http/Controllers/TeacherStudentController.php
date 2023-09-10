@@ -19,10 +19,10 @@ class TeacherStudentController extends Controller
 
     public function viewStudentOfSubject($subject_id)
     {
-        $subject = Subject::find($subject_id);
+        $subject = Subject::findOrFail($subject_id);
 
         $students = Student::where('year_level_id', $subject->year_level_id)->get();
-        return view('teacher.student.index', compact('students'));
+        return view('teacher.student.index', compact('students', 'subject'));
     }
 
     /**
