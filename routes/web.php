@@ -5,21 +5,13 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\YearLevelController;
-use App\Http\Controllers\AdminConfigController;
 use App\Http\Controllers\AdminDashboardController;
-
-
-use App\Http\Controllers\BranchHeadController;
-use App\Http\Controllers\BranchHeadDashboardController;
-use App\Http\Controllers\BranchHeadNotificationController;
-use App\Http\Controllers\CashierController;
-use App\Http\Controllers\CollectionController;
-use App\Http\Controllers\ModifyRequestController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\TeacherStudentController;
 use App\Http\Controllers\TeacherSubjectController;
-use App\Models\Section;
-use App\Models\TeacherSubject;
+
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
@@ -74,9 +66,16 @@ Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function
 
 Route::prefix('/teacher/')->as('teacher.')->middleware('role:teacher')->group(function () {
     Route::get('/teacher-student/subject/{subject_id}', [TeacherStudentController::class, 'viewStudentOfSubject'])->name('teacher-student.subject');
+    Route::post('/set-grade/student/{student_id}/subject/{subject_id}', [GradeController::class, 'setGradeStudentSubject'])->name('set-grade.student.subject');
     Route::resource('/teacher-student', TeacherStudentController::class)->names('teacher-student');
     Route::resource('/dashboard', TeacherDashboardController::class)->names('dashboard');
 });
 
 Route::prefix('/student/')->as('student.')->middleware('role:student')->group(function () {
+
+    Route::get(
+        '/view-grade/year_level/{year_level_id}/section/{section_id}/subject/{subject_id}/{student_id}',
+        [GradeController::class, 'viewGrade']
+    )->name('view-grade.year.section.subject');
+    Route::resource('/dashboard', StudentDashboardController::class)->names('dashboard');
 });
