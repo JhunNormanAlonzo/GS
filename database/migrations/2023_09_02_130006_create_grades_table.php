@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('second_grading')->nullable();
             $table->string('third_grading')->nullable();
             $table->string('fourth_grading')->nullable();
+            $table->string('average')->nullable();
             $table->timestamps();
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');

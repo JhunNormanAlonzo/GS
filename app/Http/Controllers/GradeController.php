@@ -108,9 +108,11 @@ class GradeController extends Controller
                 'first_grading' => $request->first_grading,
                 'second_grading' => $request->second_grading,
                 'third_grading' => $request->third_grading,
-                'fourth_grading' => $request->fourth_grading
+                'fourth_grading' => $request->fourth_grading,
+                'average' => ($request->first_grading + $request->second_grading + $request->third_grading + $request->fourth_grading) / 4
             ]
         );
+
 
         if ($grade) {
             showAlert("Grade Set");

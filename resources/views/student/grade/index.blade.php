@@ -16,11 +16,13 @@
                     <div id="pieChart" style="min-height: 400px;" class="echart"></div>
 
                     @php
-                        $fourth_grading = $grade->fourth_grading ?? 0;
-                        $grade_status = $fourth_grading <= 74 ? "Failed" : "Passed";
-                        $color_status = $fourth_grading <= 74 ? "Red" : "Green";
+                        $passing_grade = 74.50;
+                        $average = $grade->average ?? 0;
+                        $grade_status = $average <= $passing_grade ? "Failed" : "Passed";
+                        $color_status = $average <= $passing_grade ? "Red" : "Green";
                     @endphp
                     <script>
+                        var average = '{{$average}}';
                         var color = 'green';
                         var subject = '{{$subject->name}}';
                         var grade_status = '{{$grade_status}}';
@@ -28,7 +30,8 @@
                       document.addEventListener("DOMContentLoaded", () => {
                         echarts.init(document.querySelector("#pieChart")).setOption({
                           title: {
-                            text: grade_status,
+                            text: average+"%",
+                            subtext: grade_status,
                             left: 'center',
                             textStyle: {
                                 color: color_status, // Replace 'your_color_here' with your desired color, e.g., '#FF5733' or 'red'
