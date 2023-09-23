@@ -27,8 +27,8 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 */
 
 Route::get('/', function () {
-    // auth()->logout();
-    return view('auth.login');
+
+    return view('home');
 });
 
 
