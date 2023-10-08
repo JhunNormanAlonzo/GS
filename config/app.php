@@ -171,6 +171,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -188,5 +189,6 @@ return [
         // 'Example' => App\Facades\Example::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 ];
