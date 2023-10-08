@@ -23,4 +23,13 @@ class Student extends Model
     {
         return $this->belongsTo(YearLevel::class);
     }
+
+    public function getAverageGradeAttribute()
+    {
+        if ($this->grades->isEmpty()) {
+            return 0; // Return 0 if there are no grades for the student
+        }
+
+        return $this->grades->avg('average');
+    }
 }

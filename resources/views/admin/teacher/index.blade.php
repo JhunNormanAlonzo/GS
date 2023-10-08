@@ -14,6 +14,7 @@
                                     <th>#</th>
                                     <th>EmpNo</th>
                                     <th>Name</th>
+                                    <th>Email</th>
                                     <th>Section</th>
                                     <th>Address</th>
                                     <th>Edit</th>
@@ -26,6 +27,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$teacher->emp_no}}</td>
                                     <td>{{$teacher->user->name}}</td>
+                                    <td>{{$teacher->user->email}}</td>
                                     <td>{{$teacher->section->name}}</td>
                                     <td>{{$teacher->address}}</td>
                                     <td><a href="{{ route('admin.teacher.edit', [$teacher->id]) }}" class="btn btn-sm btn-outline-dark">Edit</a></td>
