@@ -10,8 +10,8 @@
             <div class="col-lg-6">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">Grade Chart</h5>
-
+                    <h5 class="card-title">Grade Chart {{$subject->id}}</h5>
+                    <button type="button" id="print" class="btn btn-primary btn-sm mb-3">Print</button>
 
                     <div id="pieChart" style="min-height: 400px;" class="echart"></div>
 
@@ -90,4 +90,15 @@
     @section('footer')
 
     @endsection
+    @push('scripts')
+      <script>
+       $('#print').on('click', function() {
+            let subject_id = "{{$subject->id}}";
+
+            var url = "{{ route('student.print-grade') }}" +
+            "?subject_id=" + subject_id;
+            window.location.href = url;
+        });
+      </script>
+    @endpush
 </x-student-layout>

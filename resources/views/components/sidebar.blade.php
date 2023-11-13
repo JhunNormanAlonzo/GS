@@ -66,6 +66,12 @@
             <span>Teacher Subject</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('admin.report.index')}}">
+            <i class="bi bi-trophy"></i>
+            <span>Reports</span>
+            </a>
+        </li>
       @endrole
       {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#">

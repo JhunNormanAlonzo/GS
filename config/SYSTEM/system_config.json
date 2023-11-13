@@ -2,6 +2,23 @@
     "system_config": {
         "company_name": "BNATS",
         "logo": "bnats_logo.png",
-        "year": "2024"
+        "year": "2024",
+        "mission": "We dream of Filipinos who passionately love their country and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation. As a learner-centered public institution the department of education continuously improves itself to better serve its stakeholders.",
+        "vision": {
+            "title": "To protect and promote the right of every Filipino to quality equitable, culture-based and complete basic education where:",
+            "contents": [
+                "Students learn in a child- friendly,gender-sensitive,safe and motivating environment.",
+                "The teachers facilitate learning and constantly nurture every learner.",
+                "Administrators and staff,as stewards of the institution ensure an enabling and supportive environment for effective learning to happen.",
+                "Family, community,and other stakeholders are actively engaged and share responsibility fordeveloping life-long learners."
+            ]
+        },
+        "org_chart": "bg1.png",
+        "contact": {
+            "number": "09123123123",
+            "email": "123@gmail.com",
+            "address": "4/F Unit 4015 Golden Rock Building, #168 Salcedo Street, Makati City"
+        },
+        "about": "Hunter was created by Antoine Finkelstein and François Grante in 2015. Freshly graduated, they saw the untapped potential of cold emails and wanted to address the challenges of prospecting and finding contact information. To achieve great success rate while complying with privacy regulations, they decided to use emails found on the public web. Email Hunter was born. Soon rebranded as Hunter, the tool quickly became a game-changer in business intelligence. Within weeks, it attracted thousands of users thanks to its user-friendly interface, handy browser extension, affordable pricing, and data accuracy. Unlike its peers, Hunter aimed not at large enterprises but at making cold emailing accessible to all. Over time, Hunter grew into a comprehensive email outreach platform, offering everything from finding contact information to sending cold emails. Antoine and François, with a focused team, continued to empower professionals with simple, powerful tools."
     }
 }

@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\YearLevelController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentDashboardController;
+use App\Http\Controllers\StudentReportController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\TeacherStudentController;
 use App\Http\Controllers\TeacherSubjectController;
@@ -27,8 +29,8 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 */
 
 Route::get('/', function () {
-    // auth()->logout();
-    return view('auth.login');
+
+    return view('home');
 });
 
 
@@ -59,7 +61,7 @@ Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function
     Route::resource('/section', SectionController::class)->names('section');
     Route::resource('/year-level', YearLevelController::class)->names('year-level');
     Route::resource('/subject', SubjectController::class)->names('subject');
-    Route::resource('/report', Report::class)->names('report');
+    Route::resource('/report', ReportController::class)->names('report');
     Route::resource('/dashboard', AdminDashboardController::class)->names('dashboard');
 });
 
@@ -77,5 +79,6 @@ Route::prefix('/student/')->as('student.')->middleware('role:student')->group(fu
         '/view-grade/year_level/{year_level_id}/section/{section_id}/subject/{subject_id}/{student_id}',
         [GradeController::class, 'viewGrade']
     )->name('view-grade.year.section.subject');
+    Route::get('/print-grade', [StudentReportController::class, 'printGrade'])->name('print-grade');
     Route::resource('/dashboard', StudentDashboardController::class)->names('dashboard');
 });
