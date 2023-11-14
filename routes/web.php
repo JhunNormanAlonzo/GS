@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\YearLevelController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Auth\CustomLoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentDashboardController;
@@ -33,8 +35,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/login', [CustomLoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [CustomLoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Auth::routes();
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', function () {
