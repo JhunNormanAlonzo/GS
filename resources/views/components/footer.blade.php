@@ -1,7 +1,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Alonzo</span></strong>. All Rights Reserved
+      &copy;  <strong><span>Copyright</span></strong>. All Rights Reserved
     </div>
   </footer>
   <!-- End Footer -->
