@@ -6,33 +6,27 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                          <h5 class="card-title">List of Teachers</h5>
-                            <a href="{{route('admin.teacher.create')}}" class="btn btn-sm btn-primary mb-3">create </a>
+                          <h5 class="card-title">List of Admin</h5>
+                            <a href="{{route('admin.user.create')}}" class="btn btn-sm btn-primary mb-3">create </a>
                             <div class="table-responsive">
                                 <table class="table" id="table">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>EmpNo</th>
                                             <th>Name</th>
+                                            <th>Username</th>
                                             <th>Email</th>
-                                            <th>Section</th>
-                                            <th>Address</th>
-                                            <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($teachers as $teacher)
+                                        @foreach ($admins as $admin)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$teacher->emp_no}}</td>
-                                            <td>{{$teacher->user->name}}</td>
-                                            <td>{{$teacher->user->email}}</td>
-                                            <td>{{$teacher->section->name}}</td>
-                                            <td>{{$teacher->address}}</td>
-                                            <td><a href="{{ route('admin.teacher.edit', [$teacher->id]) }}" class="btn btn-sm btn-outline-dark">Edit</a></td>
-                                            <td><a href="{{ route('admin.teacher.destroy', [$teacher->user->id]) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">Delete</a></td>
+                                            <td>{{$admin->name}}</td>
+                                            <td>{{$admin->username}}</td>
+                                            <td>{{$admin->email}}</td>
+                                            <td><a href="{{ route('admin.user.destroy', [$admin->id]) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">Delete</a></td>
                                         </tr>
                                         @endforeach
 

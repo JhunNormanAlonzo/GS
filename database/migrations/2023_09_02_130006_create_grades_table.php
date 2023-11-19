@@ -18,11 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('year_level_id');
             $table->unsignedBigInteger('section_id');
             $table->unsignedBigInteger('subject_id');
-            $table->string('first_grading')->nullable();
-            $table->string('second_grading')->nullable();
-            $table->string('third_grading')->nullable();
-            $table->string('fourth_grading')->nullable();
-            $table->string('average')->nullable();
+            $table->double('first_grading', 8,2)->nullable();
+            $table->double('second_grading', 8,2)->nullable();
+            $table->double('third_grading', 8,2)->nullable();
+            $table->double('fourth_grading', 8,2)->nullable();
+            $table->double('average', 8,2)->nullable();
             $table->timestamps();
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');

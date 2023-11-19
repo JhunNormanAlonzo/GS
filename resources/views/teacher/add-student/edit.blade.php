@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{route('admin.student.update', [$user->id])}}" method="POST">
+                    <form action="{{route('teacher.add.student.update', [$user->id])}}" method="POST">
                         @csrf
                         @method("PUT")
                         <div class="card">
@@ -23,29 +23,6 @@
                                         <x-input id="name" name="name" type="text" placeholder="Complete Name" value="{{ $user->name }}">
                                             <x-validation-error name="name"></x-validation-error>
                                         </x-input>
-                                    </div>
-
-                                    <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="age" name="age" type="number" placeholder="Age" value="{{ $user->age }}">
-                                            <x-validation-error name="age"></x-validation-error>
-                                        </x-input>
-                                    </div>
-
-                                    <div class="col-lg-4 col-12 mb-3">
-                                        @php
-                                            $genders = array('Male', 'Female');
-                                        @endphp
-
-
-                                        <div class="form-floating ">
-                                            <select name="gender" id="gender" class="form-select ">
-                                                <option value="" selected disabled>-- Select --</option>
-                                                @foreach ($genders as $option)
-                                                    <option value="{{ $option }}" {{$user->gender == $option ? 'selected' : ''}}> {{ $option }}</option>
-                                                @endforeach
-                                            </select>
-                                            <label for="gender">{{"Choose Gender"}}</label>
-                                        </div>
                                     </div>
 
                                     <div class="col-lg-4 col-12 mb-3">
@@ -75,7 +52,7 @@
                                     </div>
 
 
-                                    <div class="col-12 col-lg-8 mb-3">
+                                    <div class="col-12 mb-3">
                                         <x-input id="address" name="address" type="text" placeholder="Complete Address" value="{{ $user->student->address }}">
                                             <x-validation-error name="address"></x-validation-error>
                                         </x-input>
@@ -100,7 +77,7 @@
         $(document).ready(function() {
             var default_year_level_id =  $('#year_level_id').val();
             var default_section_id = {{$user->student->section_id}}
-            var url = "{{ route('admin.get-section.year-level', ['year_level_id' => ':year_level_id']) }}".replace(':year_level_id', default_year_level_id);
+            var url = "{{ route('teacher.get-section.year-level', ['year_level_id' => ':year_level_id']) }}".replace(':year_level_id', default_year_level_id);
                $.ajax({
                    url: url,
                    type: "GET",
@@ -127,7 +104,7 @@
            }
            $('#year_level_id').on('change', function() {
                var year_level_id = $(this).val();
-               var url = "{{ route('admin.get-section.year-level', ['year_level_id' => ':year_level_id']) }}".replace(':year_level_id', year_level_id);
+               var url = "{{ route('teacher.get-section.year-level', ['year_level_id' => ':year_level_id']) }}".replace(':year_level_id', year_level_id);
                $.ajax({
                    url: url,
                    type: "GET",
