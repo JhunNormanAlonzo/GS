@@ -18,7 +18,12 @@ class StudentController extends Controller
     {
         $students = Student::all();
         showConfirmDelete();
-        return view('admin.student.index', compact('students'));
+        if(auth()->user()->getRoleNames()->first() == "teacher"){
+            return view('teacher.add-student.index', compact('students'));
+        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+            return view('admin.student.index', compact('students'));
+        }
+
     }
 
     /**
@@ -28,7 +33,14 @@ class StudentController extends Controller
     {
         $year_levels = YearLevel::all();
         $sections = Section::all();
-        return view('admin.student.create', compact('year_levels', 'sections'));
+
+        if(auth()->user()->getRoleNames()->first() == "teacher"){
+            return view('teacher.add-student.create', compact('year_levels', 'sections'));
+        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+            return view('admin.student.create', compact('year_levels', 'sections'));
+        }
+
+
     }
 
     /**
@@ -48,6 +60,9 @@ class StudentController extends Controller
         $user = User::create([
             'name' =>  $request->name,
             'email' =>  $request->email,
+            'gender' =>  $request->gender ?? '',
+            'username' =>  $request->lrn_no ?? '',
+            'age' =>  $request->age ?? '',
             'password' =>  $request->password,
         ]);
 
@@ -61,10 +76,20 @@ class StudentController extends Controller
             'lrn_no' => $request->lrn_no,
             'address' => $request->address,
         ]);
-        if ($student) {
-            showAlert("Created");
-            return redirect()->route("admin.student.index");
+
+        if(auth()->user()->getRoleNames()->first() == "teacher"){
+            if ($student) {
+                showAlert("Created");
+                return redirect()->route("teacher.add.student.index");
+            }
+        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+            if ($student) {
+                showAlert("Created");
+                return redirect()->route("admin.student.index");
+            }
         }
+
+
     }
 
     /**
@@ -83,7 +108,15 @@ class StudentController extends Controller
         $user = User::find($id);
         $sections = Section::all();
         $year_levels = YearLevel::all();
-        return view('admin.student.edit', compact('sections', 'year_levels', 'user'));
+
+
+        if(auth()->user()->getRoleNames()->first() == "teacher"){
+            return view('teacher.add-student.edit', compact('sections', 'year_levels', 'user'));
+        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+            return view('admin.student.edit', compact('sections', 'year_levels', 'user'));
+        }
+
+
     }
 
     /**
@@ -106,6 +139,8 @@ class StudentController extends Controller
         $user->update([
             'name' =>  $request->name,
             'email' =>  $request->email,
+            'gender' =>  $request->gender ?? '',
+            'age' =>  $request->age ?? '',
         ]);
 
         $student->update([
@@ -114,9 +149,13 @@ class StudentController extends Controller
             'lrn_no' => $request->lrn_no,
             'address' => $request->address,
         ]);
-
         showAlert("Updated");
-        return redirect()->route('admin.student.index');
+        if(auth()->user()->getRoleNames()->first() == "teacher"){
+            return redirect()->route('teacher.add.student.index');
+        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+            return redirect()->route('admin.student.index');
+        }
+
     }
 
     /**
@@ -130,6 +169,11 @@ class StudentController extends Controller
         $user->delete();
 
         showAlert("Deleted");
-        return redirect()->route('admin.student.index');
+        if(auth()->user()->getRoleNames()->first() == "teacher"){
+            return redirect()->route('teacher.add.student.index');
+        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+            return redirect()->route('admin.student.index');
+        }
+
     }
 }

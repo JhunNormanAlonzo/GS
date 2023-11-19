@@ -40,6 +40,7 @@ class TeacherController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'username' => 'required|unique:users,username',
             'password' => 'required',
             'section_id' => 'required',
             'emp_no' => 'required',
@@ -49,6 +50,7 @@ class TeacherController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'username' => $request->email,
             'password' => $request->password,
         ]);
 

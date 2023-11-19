@@ -20,6 +20,8 @@
                                     <th>Lrn</th>
                                     <th>Year Level</th>
                                     <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
                                     <th>Average</th>
                                     <th>Status</th>
                                 </tr>
@@ -34,6 +36,8 @@
                                         <td>{{$grade->student->lrn_no}}</td>
                                         <td>{{$grade->student->yearLevel->name}}</td>
                                         <td>{{$grade->student->user->name}}</td>
+                                        <td>{{$grade->student->user->age}}</td>
+                                        <td>{{$grade->student->user->gender}}</td>
                                         <td>{{ $average }}</td>
                                         <td>
                                             @if ($average >= 90 && $average <= 94)

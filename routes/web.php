@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\YearLevelController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Auth\CustomLoginController;
@@ -15,7 +16,7 @@ use App\Http\Controllers\StudentReportController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\TeacherStudentController;
 use App\Http\Controllers\TeacherSubjectController;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
@@ -35,9 +36,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/login', [CustomLoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [CustomLoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Auth::routes();
+
 
 
 
@@ -55,9 +55,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
-
-
 Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function () {
     Route::get('/get-sections/year-level/{year_level_id}', [SectionController::class, 'getWhereYearLevel'])->name('get-section.year-level');
     Route::resource('/teacher-subject', TeacherSubjectController::class)->names('teacher-subject');
@@ -66,12 +63,15 @@ Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function
     Route::resource('/section', SectionController::class)->names('section');
     Route::resource('/year-level', YearLevelController::class)->names('year-level');
     Route::resource('/subject', SubjectController::class)->names('subject');
+    Route::resource('/user', UserController::class)->names('user');
     Route::resource('/report', ReportController::class)->names('report');
     Route::resource('/dashboard', AdminDashboardController::class)->names('dashboard');
 });
 
 
 Route::prefix('/teacher/')->as('teacher.')->middleware('role:teacher')->group(function () {
+    Route::resource('/add-student', StudentController::class)->names('add.student');
+    Route::get('/get-sections/year-level/{year_level_id}', [SectionController::class, 'getWhereYearLevel'])->name('get-section.year-level');
     Route::get('/teacher-student/subject/{subject_id}', [TeacherStudentController::class, 'viewStudentOfSubject'])->name('teacher-student.subject');
     Route::post('/set-grade/student/{student_id}/subject/{subject_id}', [GradeController::class, 'setGradeStudentSubject'])->name('set-grade.student.subject');
     Route::resource('/teacher-student', TeacherStudentController::class)->names('teacher-student');
@@ -79,7 +79,6 @@ Route::prefix('/teacher/')->as('teacher.')->middleware('role:teacher')->group(fu
 });
 
 Route::prefix('/student/')->as('student.')->middleware('role:student')->group(function () {
-
     Route::get(
         '/view-grade/year_level/{year_level_id}/section/{section_id}/subject/{subject_id}/{student_id}',
         [GradeController::class, 'viewGrade']

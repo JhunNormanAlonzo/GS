@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,10 +16,13 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
-            'name' => 'Jhun Norman Alonzo',
-            'email' => 'jalonzo@diavox.net',
+            'name' => 'Administrator',
+            'email' => 'administrator@hotmail.com',
+            'username' => 'administrator',
             'password' => bcrypt('admin123')
         ]);
         $admin->assignRole('admin');
+
+
     }
 }

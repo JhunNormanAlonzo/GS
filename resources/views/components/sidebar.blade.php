@@ -16,6 +16,12 @@
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{route('teacher.add.student.index')}}">
+                <i class="bi bi-person"></i>
+                <span>Student</span>
+                </a>
+            </li>
         @endrole
 
         @role('student')
@@ -29,6 +35,12 @@
       </li><!-- End Dashboard Nav -->
 
       @role('admin')
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('admin.user.index')}}">
+            <i class="bi bi-people"></i>
+            <span>Administrators</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('admin.teacher.index')}}">
             <i class="bi bi-people-fill"></i>

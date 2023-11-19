@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             YearLevelSeeder::class,
             UserSeeder::class,
+            SectionSeeder::class,
             // SubjectSeeder::class,
 
         ]);

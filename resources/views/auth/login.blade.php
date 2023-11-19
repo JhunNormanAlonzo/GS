@@ -126,18 +126,19 @@
                     @csrf
                     <div class="row mb-3">
                         <div class="col-12">
-                            <label for="email">{{ __('Email Address') }}</label>
+                            <label for="username_or_email">{{ __('Username or Email Address') }}</label>
                         </div>
                         <div class="col-12">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="username_or_email" type="text" class="form-control @error('username_or_email') is-invalid @enderror" name="username_or_email" value="{{ old('username_or_email') }}" required autofocus>
 
-                            @error('email')
+                            @error('username_or_email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                     </div>
+
                     <div class="row mb-3">
                         <div class="col-12">
                             <label for="password">{{ __('Password') }}</label>
