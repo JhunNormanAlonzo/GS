@@ -6,22 +6,49 @@
 
     @section('content')
     <div class="col-lg-12">
-        <div class="row">
-            <div class="col-lg-6">
+        <div class="row ">
+            <div class="col-lg-12 ">
                 <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Grade Chart {{$subject->id}}</h5>
-                    <button type="button" id="print" class="btn btn-primary btn-sm mb-3">Print</button>
-
-                    <div id="pieChart" style="min-height: 400px;" class="echart"></div>
-
+                  <div class="card-body py-3">
                     @php
                         $passing_grade = 74.50;
                         $average = $grade->average ?? 0;
                         $grade_status = $average <= $passing_grade ? "Failed" : "Passed";
                         $color_status = $average <= $passing_grade ? "Red" : "Green";
                     @endphp
-                    <script>
+                    {{-- <button type="button" id="print" class="btn btn-primary btn-sm mb-3">Print</button> --}}
+                    <div class="table-responsive">
+                        <table class="table" id="table">
+                            <thead>
+                                <tr>
+                                    <th>First Grading</th>
+                                    <th>Second Grading</th>
+                                    <th>Third Grading</th>
+                                    <th>Fourth Grading</th>
+                                    <th>Average</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{$grade->first_grading}}</td>
+                                    <td>{{$grade->second_grading}}</td>
+                                    <td>{{$grade->third_grading}}</td>
+                                    <td>{{$grade->fourth_grading}}</td>
+                                    <td>{{$average."%"}}</td>
+                                    <td>{{$grade_status}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{-- <h5 class="card-title">Grade Chart {{$subject->id}}</h5> --}}
+
+
+                    {{-- <div id="pieChart" style="min-height: 400px;" class="echart"></div> --}}
+
+
+                    {{-- <script>
                         var average = '{{$average}}';
                         var color = 'green';
                         var subject = '{{$subject->name}}';
@@ -76,7 +103,9 @@
                           }]
                         });
                       });
-                    </script>
+                    </script> --}}
+
+
                     <!-- End Pie Chart -->
 
                   </div>
@@ -92,13 +121,30 @@
     @endsection
     @push('scripts')
       <script>
-       $('#print').on('click', function() {
-            let subject_id = "{{$subject->id}}";
+    //    $('#print').on('click', function() {
+    //         let subject_id = "{{$subject->id}}";
 
-            var url = "{{ route('student.print-grade') }}" +
-            "?subject_id=" + subject_id;
-            window.location.href = url;
-        });
+    //         var url = "{{ route('student.print-grade') }}" +
+    //         "?subject_id=" + subject_id;
+    //         window.location.href = url;
+    //     });
+
+
       </script>
+
+
+    @endpush
+
+    @push('scripts')
+        <script>
+            $("#table").DataTable({
+                dom: "Bfrtp",
+                buttons : [
+                    "excel",
+                    "pdf",
+                    "print",
+                ]
+            });
+        </script>
     @endpush
 </x-student-layout>
