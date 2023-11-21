@@ -22,24 +22,23 @@
                                     </div>
 
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="name" name="name" type="text" placeholder="Complete Name" value="{{ old('name') }}">
+                                        <x-input id="name" name="name" autocomplete="off" type="text" placeholder="Complete Name" value="{{ old('name') }}">
                                             <x-validation-error name="name"></x-validation-error>
                                         </x-input>
                                     </div>
 
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="username" name="username" autocomplete="off" type="text" placeholder="Username" value="{{ old('username') }}">
-                                        <x-input id="email" name="email" type="text" autocomplete="off"  placeholder="Email" value="{{ old('email') }}">
+                                        <x-input id="email" name="email" autocomplete="off" type="text" placeholder="Email" value="{{ old('email') }}">
                                             <x-validation-error name="email"></x-validation-error>
                                         </x-input>
                                     </div>
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="username" name="username" autocomplete="off" type="text" placeholder="Username" value="{{ old('username') }}">
+                                        <x-input id="username" autocomplete="off" name="username" type="text" placeholder="Username" value="{{ old('username') }}">
                                             <x-validation-error name="username"></x-validation-error>
                                         </x-input>
                                     </div>
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="password" name="password" type="password" placeholder="Password" value="{{ old('password') }}">
+                                        <x-input id="password" autocomplete="off" name="password" type="password" placeholder="Password" value="{{ old('password') }}">
                                             <x-validation-error name="password"></x-validation-error>
                                         </x-input>
                                     </div>
