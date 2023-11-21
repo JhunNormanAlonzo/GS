@@ -11,6 +11,7 @@
     $contact = $config['system_config']['contact'];
     $about = $config['system_config']['about'];
     $org_chart = $config['system_config']['org_chart'];
+    $about_image = $config['system_config']['about_image'];
 @endphp
 <x-header></x-header>
 <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-light ">
@@ -74,8 +75,11 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-12 mb-3">
-                        <h6>{{$about}}</h6>
+                    <div class="col-12 mb3">
+                        <img class="img-fluid" src="{{asset('img/'.$about_image)}}" alt="">
+                    </div>
+                    <div class="col-12 text-center mb-3 p-3">
+                        <h6 class="fw-bolder">{{$about}}</h6>
                     </div>
                 </div>
             </div>

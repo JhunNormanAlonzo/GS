@@ -26,10 +26,10 @@
         @role('admin')
         <li class="nav-item dropdown" id="admin_notification">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          {{-- <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number" id="admin_notif_badge_number"></span>
-          </a><!-- End Notification Icon -->
+          </a><!-- End Notification Icon --> --}}
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" >
             <li class="dropdown-header">
