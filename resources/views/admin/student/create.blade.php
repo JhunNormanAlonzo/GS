@@ -21,7 +21,7 @@
                                         </x-input>
                                     </div>
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="name" name="name" type="text" placeholder="Complete Name" value="{{ old('name') }}">
+                                        <x-input id="name" name="name" autocomplete="off" type="text" placeholder="Complete Name" value="{{ old('name') }}">
                                             <x-validation-error name="name"></x-validation-error>
                                         </x-input>
                                     </div>
@@ -32,12 +32,12 @@
                                     </div>
 
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="password" name="password" type="password" placeholder="Password" value="{{ old('password') }}">
+                                        <x-input id="password" name="password" autocomplete="off" type="password" placeholder="Password" value="{{ old('password') }}">
                                             <x-validation-error name="password"></x-validation-error>
                                         </x-input>
                                     </div>
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="email" name="email" type="text" placeholder="Email" value="{{ old('email') }}">
+                                        <x-input id="email" name="email" autocomplete="off" type="text" placeholder="Email" value="{{ old('email') }}">
                                             <x-validation-error name="email"></x-validation-error>
                                         </x-input>
                                     </div>
@@ -61,7 +61,6 @@
                                                 @endforeach
                                             </select>
                                             <label for="gender">{{"Choose Gender"}}</label>
-
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-12 mb-3">

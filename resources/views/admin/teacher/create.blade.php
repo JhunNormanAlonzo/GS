@@ -28,12 +28,13 @@
                                     </div>
 
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="email" name="email" type="text" placeholder="Email" value="{{ old('email') }}">
+                                        <x-input id="username" name="username" autocomplete="off" type="text" placeholder="Username" value="{{ old('username') }}">
+                                        <x-input id="email" name="email" type="text" autocomplete="off"  placeholder="Email" value="{{ old('email') }}">
                                             <x-validation-error name="email"></x-validation-error>
                                         </x-input>
                                     </div>
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="username" name="username" type="text" placeholder="Username" value="{{ old('username') }}">
+                                        <x-input id="username" name="username" autocomplete="off" type="text" placeholder="Username" value="{{ old('username') }}">
                                             <x-validation-error name="username"></x-validation-error>
                                         </x-input>
                                     </div>
