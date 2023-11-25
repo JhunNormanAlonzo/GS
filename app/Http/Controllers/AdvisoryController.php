@@ -3,28 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
-use App\Models\Subject;
-use App\Models\User;
 use Illuminate\Http\Request;
-use PHPUnit\Framework\MockObject\Builder\Stub;
+use Illuminate\Support\Facades\Auth;
 
-class TeacherStudentController extends Controller
+class AdvisoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
+        $teacher_section_id = Auth::user()->teacher->section_id;
+        $advisories = Student::where('section_id', $teacher_section_id)->get();
+        $section = Auth::user()->teacher->first()->section->name;
 
-    public function viewStudentOfSubject($subject_id)
-    {
-        $subject = Subject::findOrFail($subject_id);
-
-        $students = Student::where('year_level_id', $subject->year_level_id)->get();
-        showConfirmDelete();
-        return view('teacher.student.index', compact('students', 'subject'));
+        return view('teacher.advisory.index', compact('advisories', 'section'));
     }
 
     /**
@@ -70,18 +63,8 @@ class TeacherStudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function setDropout($id)
-    {
-        // dd($id);
-        // $user = User::findOrFail($id);
-        // $student = Student::where('user_id', $user->id)->firstOrFail();
-        // $student->delete();
-        // $user->forceDelete();
-        return redirect()->route('teacher.dashboard.index');
-    }
-
-
     public function destroy(string $id)
     {
+        //
     }
 }

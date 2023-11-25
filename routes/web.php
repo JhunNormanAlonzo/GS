@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\YearLevelController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdvisoryController;
 use App\Http\Controllers\Auth\CustomLoginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GradeController;
@@ -75,6 +76,8 @@ Route::prefix('/teacher/')->as('teacher.')->middleware('role:teacher')->group(fu
     Route::get('/teacher-student/subject/{subject_id}', [TeacherStudentController::class, 'viewStudentOfSubject'])->name('teacher-student.subject');
     Route::post('/set-grade/student/{student_id}/subject/{subject_id}', [GradeController::class, 'setGradeStudentSubject'])->name('set-grade.student.subject');
     Route::resource('/teacher-student', TeacherStudentController::class)->names('teacher-student');
+    Route::get('/teacher-student/drop/{student_id}', [TeacherStudentController::class, 'setDropout'])->name('teacher-student.drop');
+    Route::resource('/advisory', AdvisoryController::class)->names('advisory');
     Route::resource('/dashboard', TeacherDashboardController::class)->names('dashboard');
 });
 

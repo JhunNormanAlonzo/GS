@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('age')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

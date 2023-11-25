@@ -15,7 +15,7 @@
                         <div class="card-body">
                                 <div class="row mt-3">
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="lrn_no" name="lrn_no" type="number" placeholder="LRN Number" value="{{  $user->student->lrn_no  }}">
+                                        <x-input id="lrn_no" readonly name="lrn_no" type="number" placeholder="LRN Number" value="{{  $user->student->lrn_no  }}">
                                             <x-validation-error name="lrn_no"></x-validation-error>
                                         </x-input>
                                     </div>

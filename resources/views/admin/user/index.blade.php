@@ -52,6 +52,7 @@
 
     @push('scripts')
         <script>
+
             $("#table").DataTable();
         </script>
     @endpush

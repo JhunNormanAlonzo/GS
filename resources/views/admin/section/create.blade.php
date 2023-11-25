@@ -33,8 +33,8 @@
                                 </div>
                            </div>
                            <div class="card-footer">
-
                             <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="reset" class="btn btn-danger">Clear</button>
                        </div>
                         </div>
                     </form>

@@ -8,30 +8,38 @@
                         <div class="card-body">
                           <h5 class="card-title">List of Section</h5>
                             <a href="{{route('admin.section.create')}}" class="btn btn-sm btn-primary mb-3">create </a>
-                          <table class="table" id="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>YearLevel</th>
-                                    <th>Name</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($sections as $section)
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$section->yearLevel->name}}</td>
-                                    <td>{{$section->name}}</td>
-                                    <td><a href="{{ route('admin.section.edit', [$section->id]) }}" class="btn btn-sm btn-outline-dark">Edit</a></td>
-                                    <td><a href="{{ route('admin.section.destroy', [$section->id]) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">Delete</a></td>
-                                </tr>
+                            <div class="row">
+                                @foreach($sections->groupBy('year_level_id') as $yearLevel => $yearSections)
+                                <div class="col-6">
+                                   <div class="card">
+                                    <div class="card-body p-3">
+                                        <h2 class="text-center">{{ $yearSections->first()->yearLevel->name }}</h2>
+                                        <hr>
+                                        <table class="table" id="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($yearSections as $section)
+                                                <tr>
+
+                                                    <td>{{$section->name}}</td>
+                                                    <td><a href="{{ route('admin.section.edit', [$section->id]) }}" class="btn btn-sm btn-outline-dark">Edit</a></td>
+                                                    <td><a href="{{ route('admin.section.destroy', [$section->id]) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">Delete</a></td>
+                                                </tr>
+                                                @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                   </div>
+                                </div>
                                 @endforeach
-
-                            </tbody>
-                          </table>
-
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -50,7 +58,7 @@
 
     @push('scripts')
         <script>
-            $("#table").DataTable();
+            $(".table").DataTable();
         </script>
     @endpush
 

@@ -10,6 +10,8 @@ if (!function_exists('showConfirmDelete')) {
         confirmDelete($title, $text);
     }
 }
+
+
 if (!function_exists('showAlert')) {
     function showAlert($status)
     {

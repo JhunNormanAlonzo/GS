@@ -18,12 +18,11 @@ class StudentController extends Controller
     {
         $students = Student::all();
         showConfirmDelete();
-        if(auth()->user()->getRoleNames()->first() == "teacher"){
+        if (auth()->user()->getRoleNames()->first() == "teacher") {
             return view('teacher.add-student.index', compact('students'));
-        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+        } elseif (auth()->user()->getRoleNames()->first() == "admin") {
             return view('admin.student.index', compact('students'));
         }
-
     }
 
     /**
@@ -34,13 +33,11 @@ class StudentController extends Controller
         $year_levels = YearLevel::all();
         $sections = Section::all();
 
-        if(auth()->user()->getRoleNames()->first() == "teacher"){
+        if (auth()->user()->getRoleNames()->first() == "teacher") {
             return view('teacher.add-student.create', compact('year_levels', 'sections'));
-        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+        } elseif (auth()->user()->getRoleNames()->first() == "admin") {
             return view('admin.student.create', compact('year_levels', 'sections'));
         }
-
-
     }
 
     /**
@@ -77,19 +74,17 @@ class StudentController extends Controller
             'address' => $request->address,
         ]);
 
-        if(auth()->user()->getRoleNames()->first() == "teacher"){
+        if (auth()->user()->getRoleNames()->first() == "teacher") {
             if ($student) {
                 showAlert("Created");
                 return redirect()->route("teacher.add.student.index");
             }
-        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+        } elseif (auth()->user()->getRoleNames()->first() == "admin") {
             if ($student) {
                 showAlert("Created");
                 return redirect()->route("admin.student.index");
             }
         }
-
-
     }
 
     /**
@@ -110,13 +105,11 @@ class StudentController extends Controller
         $year_levels = YearLevel::all();
 
 
-        if(auth()->user()->getRoleNames()->first() == "teacher"){
+        if (auth()->user()->getRoleNames()->first() == "teacher") {
             return view('teacher.add-student.edit', compact('sections', 'year_levels', 'user'));
-        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+        } elseif (auth()->user()->getRoleNames()->first() == "admin") {
             return view('admin.student.edit', compact('sections', 'year_levels', 'user'));
         }
-
-
     }
 
     /**
@@ -150,12 +143,11 @@ class StudentController extends Controller
             'address' => $request->address,
         ]);
         showAlert("Updated");
-        if(auth()->user()->getRoleNames()->first() == "teacher"){
+        if (auth()->user()->getRoleNames()->first() == "teacher") {
             return redirect()->route('teacher.add.student.index');
-        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+        } elseif (auth()->user()->getRoleNames()->first() == "admin") {
             return redirect()->route('admin.student.index');
         }
-
     }
 
     /**
@@ -169,11 +161,10 @@ class StudentController extends Controller
         $user->delete();
 
         showAlert("Deleted");
-        if(auth()->user()->getRoleNames()->first() == "teacher"){
+        if (auth()->user()->getRoleNames()->first() == "teacher") {
             return redirect()->route('teacher.add.student.index');
-        }elseif(auth()->user()->getRoleNames()->first() == "admin"){
+        } elseif (auth()->user()->getRoleNames()->first() == "admin") {
             return redirect()->route('admin.student.index');
         }
-
     }
 }

@@ -22,6 +22,10 @@
                 <span>Student</span>
                 </a>
             </li>
+            <a class="nav-link " href="{{route('teacher.advisory.index')}}">
+                <i class="bi bi-book"></i>
+                <span>Advisory</span>
+            </a>
         @endrole
 
         @role('student')

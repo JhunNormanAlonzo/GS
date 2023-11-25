@@ -6,7 +6,7 @@
     @section('content')
     <div class="col-lg-12">
         <div class="row">
-            @foreach($teacher_subjects as $teacher_subject)
+            @forelse($teacher_subjects as $teacher_subject)
             <a href="{{route('teacher.teacher-student.subject', [$teacher_subject->subject_id])}}" data-bs-toggle="tooltip" data-bs-title="Go to {{$teacher_subject->subject->yearLevel->name." ".$teacher_subject->subject->name}} class." class="col-xxl-4 col-md-6">
                 <div class="card info-card customers-card">
                     <div class="card-body">
@@ -22,7 +22,17 @@
                     </div>
                 </div>
             </a>
-            @endforeach
+            @empty
+            <div class="row">
+                <div class="col-12 py-5 text-center">
+                    <i class="bi bi-search  " style="font-size: 70px"></i>
+                    <h4 class="">No Assigned Class</h4>
+                </div>
+            </div>
+
+            @endforelse
+
+
 
         </div>
       </div>
