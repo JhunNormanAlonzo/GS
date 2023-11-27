@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Collection;
+use App\Models\SchoolYear;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Subject;
@@ -24,6 +25,7 @@ class AdminDashboardController extends Controller
         $teachers = Teacher::all();
         $sections = Section::all();
         $yearlevels = YearLevel::all();
+        $current_school_year = SchoolYear::where('is_active', true)->first()->name;
         $subjects = Subject::all();
         return view('admin.index', compact(
             'students',
@@ -31,6 +33,7 @@ class AdminDashboardController extends Controller
             'sections',
             'yearlevels',
             'subjects',
+            'current_school_year'
         ));
     }
 

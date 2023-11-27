@@ -28,6 +28,7 @@
                                                 <tr>
 
                                                     <td>{{$section->name}}</td>
+
                                                     <td><a href="{{ route('admin.section.edit', [$section->id]) }}" class="btn btn-sm btn-outline-dark">Edit</a></td>
                                                     <td><a href="{{ route('admin.section.destroy', [$section->id]) }}" class="btn btn-danger btn-sm" data-confirm-delete="true">Delete</a></td>
                                                 </tr>

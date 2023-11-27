@@ -64,6 +64,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('admin.school-year.index')}}">
+                <i class="bi bi-calendar"></i>
+                <span>SchoolYear</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('admin.year-level.index')}}">
             <i class="bi bi-water"></i>
             <span>Year Level</span>

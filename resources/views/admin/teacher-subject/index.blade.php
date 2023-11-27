@@ -14,7 +14,7 @@
                                     <th>#</th>
                                     <th>EmpNo</th>
                                     <th>Name</th>
-                                    <th>Assigns</th>
+                                    <th>Assign</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,7 +24,7 @@
                                     <td>{{$teacher->emp_no}}</td>
                                     <td>{{$teacher->user->name}}</td>
                                     <td>
-                                        <span type="button" data-bs-toggle="modal" data-bs-target="#teacher_subject{{$teacher->id}}" style="cursor: pointer; user-select: none;" class="bg-primary badge">View All</span>
+                                        <span type="button" data-bs-toggle="modal" data-bs-target="#teacher_subject{{$teacher->id}}" style="cursor: pointer; user-select: none;" class="bg-primary badge">Subjects</span>
                                         <div class="modal fade" id="teacher_subject{{$teacher->id}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">

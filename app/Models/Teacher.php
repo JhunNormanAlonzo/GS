@@ -10,10 +10,6 @@ class Teacher extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
 
     public function section()
     {
@@ -28,5 +24,10 @@ class Teacher extends Model
     public function subjects()
     {
         return $this->belongsToMany(Subject::class, 'teacher_subjects');
+    }
+
+    public function teacherStudents()
+    {
+        return $this->hasMany(TeacherStudent::class);
     }
 }

@@ -8,10 +8,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\YearLevelController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdvisoryController;
-use App\Http\Controllers\Auth\CustomLoginController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SchoolYearController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\StudentReportController;
 use App\Http\Controllers\TeacherDashboardController;
@@ -19,7 +18,7 @@ use App\Http\Controllers\TeacherStudentController;
 use App\Http\Controllers\TeacherSubjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Xml\Report;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +65,8 @@ Route::prefix('/admin/')->as('admin.')->middleware('role:admin')->group(function
     Route::resource('/subject', SubjectController::class)->names('subject');
     Route::resource('/user', UserController::class)->names('user');
     Route::resource('/report', ReportController::class)->names('report');
+    Route::get('/school-year/activate/{schoolYear}', [SchoolYearController::class, 'setActive'])->name('school-year.activate');
+    Route::resource('/school-year', SchoolYearController::class)->names('school-year');
     Route::resource('/dashboard', AdminDashboardController::class)->names('dashboard');
 });
 
@@ -75,8 +76,9 @@ Route::prefix('/teacher/')->as('teacher.')->middleware('role:teacher')->group(fu
     Route::get('/get-sections/year-level/{year_level_id}', [SectionController::class, 'getWhereYearLevel'])->name('get-section.year-level');
     Route::get('/teacher-student/subject/{subject_id}', [TeacherStudentController::class, 'viewStudentOfSubject'])->name('teacher-student.subject');
     Route::post('/set-grade/student/{student_id}/subject/{subject_id}', [GradeController::class, 'setGradeStudentSubject'])->name('set-grade.student.subject');
+    Route::post('/teacher-student/add-to-class', [TeacherStudentController::class, 'addToClass'])->name('teacher-student.add-to-class');
     Route::resource('/teacher-student', TeacherStudentController::class)->names('teacher-student');
-    Route::get('/teacher-student/drop/{student_id}', [TeacherStudentController::class, 'setDropout'])->name('teacher-student.drop');
+    Route::get('/teacher-student/drop/{teacher_student_id}', [TeacherStudentController::class, 'setDropout'])->name('teacher-student.drop');
     Route::resource('/advisory', AdvisoryController::class)->names('advisory');
     Route::resource('/dashboard', TeacherDashboardController::class)->names('dashboard');
 });

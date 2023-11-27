@@ -13,39 +13,19 @@ class SubjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Subject::create([
-            'code' => 'ENG1',
-            'name' => 'English 1',
-        ]);
+        $subjects = [
+            ['year_level_id' => 1, 'code' => 'MATH101', 'name' => 'Mathematics'],
+            ['year_level_id' => 1, 'code' => 'ENG101', 'name' => 'English'],
+            ['year_level_id' => 1, 'code' => 'SCI101', 'name' => 'Science'],
+            ['year_level_id' => 1, 'code' => 'HIS101', 'name' => 'History'],
+            ['year_level_id' => 1, 'code' => 'GEO101', 'name' => 'Geography'],
+            ['year_level_id' => 1, 'code' => 'ART101', 'name' => 'Art'],
+            ['year_level_id' => 1, 'code' => 'PHY101', 'name' => 'Physics'],
+            ['year_level_id' => 1, 'code' => 'CHEM101', 'name' => 'Chemistry'],
+            ['year_level_id' => 1, 'code' => 'COMP101', 'name' => 'Computer Science'],
+            ['year_level_id' => 1, 'code' => 'PE101', 'name' => 'Physical Education'],
+        ];
 
-        Subject::create([
-            'code' => 'MATH1',
-            'name' => 'Mathematics 1',
-        ]);
-
-        Subject::create([
-            'code' => 'Fil1',
-            'name' => 'Filipino 1',
-        ]);
-
-        Subject::create([
-            'code' => 'AP1',
-            'name' => 'Araling Panlipunan 1',
-        ]);
-
-        Subject::create([
-            'code' => 'ESP1',
-            'name' => 'Edukasyon sa Pagkakatao 1',
-        ]);
-
-        Subject::create([
-            'code' => 'MAPEH1',
-            'name' => 'Music Arts Physical Education Health 1',
-        ]);
-
-        Subject::create([
-            'code' => 'SCI1',
-            'name' => 'SCIENCE 1',
-        ]);
+        Subject::insert($subjects);
     }
 }

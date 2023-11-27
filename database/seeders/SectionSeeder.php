@@ -22,8 +22,6 @@ class SectionSeeder extends Seeder
             'F',
             'G',
             'H',
-            'I',
-            'J',
         ];
         $x = 1;
         foreach ($sections as $section) {
@@ -32,7 +30,7 @@ class SectionSeeder extends Seeder
                 'name' => $section,
             ]);
             $x++;
-            if($x == 7){
+            if ($x == 4) {
                 $x = 1;
             }
         }
