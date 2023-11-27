@@ -89,6 +89,22 @@
                 </div>
             </div>
 
+            <div class="col-xxl-4 col-md-6">
+                <div class="card info-card customers-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Current School Year<span></span></h5>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-calendar-check"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>{{$current_school_year}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
       </div>
     @endsection

@@ -2,39 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
-use App\Models\Collection;
-use App\Models\SchoolYear;
-use App\Models\Section;
 use App\Models\Student;
-use App\Models\Subject;
-use App\Models\Teacher;
-use App\Models\YearLevel;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
-class AdminDashboardController extends Controller
+class AdvisoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $teacher_section_id = Auth::user()->teacher->section_id;
+        $advisories = Student::where('section_id', $teacher_section_id)->get();
+        $section = Auth::user()->teacher->first()->section->name;
 
-        $students = Student::all();
-        $teachers = Teacher::all();
-        $sections = Section::all();
-        $yearlevels = YearLevel::all();
-        $current_school_year = SchoolYear::where('is_active', true)->first()->name;
-        $subjects = Subject::all();
-        return view('admin.index', compact(
-            'students',
-            'teachers',
-            'sections',
-            'yearlevels',
-            'subjects',
-            'current_school_year'
-        ));
+        return view('teacher.advisory.index', compact('advisories', 'section'));
     }
 
     /**

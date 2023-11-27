@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('teacher_id');
-            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('teacher_student_id');
+            $table->unsignedBigInteger('school_year_id');
             $table->unsignedBigInteger('year_level_id');
             $table->unsignedBigInteger('section_id');
             $table->unsignedBigInteger('subject_id');
@@ -24,8 +24,7 @@ return new class extends Migration
             $table->double('fourth_grading', 8,2)->nullable();
             $table->double('average', 8,2)->nullable();
             $table->timestamps();
-            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('teacher_student_id')->references('id')->on('teacher_students')->onDelete('cascade');
             $table->foreign('year_level_id')->references('id')->on('year_levels')->onDelete('cascade');
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Grade;
+use App\Models\TeacherStudent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,14 +94,18 @@ class GradeController extends Controller
             'fourth_grading' => 'required|numeric',
         ]);
 
-        $teacher_id = Auth::user()->teacher->id;
+        $teacher_student = TeacherStudent::find($request->teacher_student_id);
+
+        $teacher_id = $teacher_student->teacher_id;
         $student = Student::find($student_id);
         $subject = Subject::find($subject_id);
 
+
+
         $grade = Grade::updateOrCreate(
             [
-                'teacher_id' => $teacher_id,
-                'student_id' => $student_id,
+                'teacher_student_id' => $teacher_student->id,
+                'school_year_id' => Helper::activeSchoolYear()->id,
                 'year_level_id' => $subject->year_level_id,
                 'section_id' => $student->section_id,
                 'subject_id' => $subject->id

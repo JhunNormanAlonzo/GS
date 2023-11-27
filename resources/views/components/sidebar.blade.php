@@ -22,6 +22,10 @@
                 <span>Student</span>
                 </a>
             </li>
+            <a class="nav-link " href="{{route('teacher.advisory.index')}}">
+                <i class="bi bi-book"></i>
+                <span>Advisory</span>
+            </a>
         @endrole
 
         @role('student')
@@ -57,6 +61,12 @@
             <a class="nav-link collapsed" href="{{route('admin.section.index')}}">
             <i class="bi bi-building-fill-gear"></i>
             <span>Section</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('admin.school-year.index')}}">
+                <i class="bi bi-calendar"></i>
+                <span>SchoolYear</span>
             </a>
         </li>
         <li class="nav-item">

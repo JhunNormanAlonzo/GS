@@ -37,6 +37,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>
+                                                <a href="" class="btn btn-sm btn-outline-danger"  onclick="event.preventDefault(); dropConfirm({{ $student->user->id }});">Drop Out</a>
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#setGrade{{$student->id}}" class="btn btn-sm btn-outline-primary">grade</button>
                                                 <div class="modal fade" id="setGrade{{$student->id}}">
                                                     <div class="modal-dialog">
@@ -112,6 +113,22 @@
 
     @push('scripts')
         <script>
+            function dropConfirm(studentId){
+                Swal.fire({
+                    title: 'Drop Student!',
+                    text: 'Are you sure you want to drop this student?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Drop Out'
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        window.location.href = "{{ route('teacher.teacher-student.drop', ':id') }}".replace(':id', studentId);
+                    }
+                });
+            }
+
             $(".table").DataTable();
         </script>
     @endpush

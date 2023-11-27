@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\SchoolYear;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,8 +19,8 @@ class DatabaseSeeder extends Seeder
             YearLevelSeeder::class,
             UserSeeder::class,
             SectionSeeder::class,
-            // SubjectSeeder::class,
-
+            SchoolYearSeeder::class,
+            SubjectSeeder::class,
         ]);
     }
 }

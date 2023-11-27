@@ -1,6 +1,6 @@
 <x-admin-layout>
     @php
-        $module = "Year Level";
+        $module = "School Year";
     @endphp
     @section('title')
         Create {{$module}} <a href="{{ url()->previous() }}" class="btn-link btn-sm btn" >Go Back</a>
@@ -11,24 +11,28 @@
             <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{route('admin.year-level.store')}}" method="POST">
+
+                    <form action="{{route('admin.school-year.update', [$schoolYear->id])}}" method="POST">
                         @csrf
-                        @method("POST")
+                        @method("PUT")
                         <div class="card">
                             <div class="card-header">Enter {{$module}} details here.</div>
                            <div class="card-body">
                                 <div class="row mt-3">
+                                    @php
+                                        $year_today = now()->format('Y');
+                                    @endphp
                                     <div class="col-lg-4 col-12 mb-3">
-                                        <x-input id="name" name="name" type="text" placeholder="Name" value="{{ old('name') }}">
+                                        <x-input id="name" name="name"  type="text" placeholder="({{$year_today}}-{{$year_today+1}})" value="{{ $schoolYear->name }}">
                                             <x-validation-error name="name"></x-validation-error>
                                         </x-input>
                                     </div>
+
                                 </div>
                            </div>
                            <div class="card-footer">
 
                             <button type="submit" class="btn btn-primary">Save</button>
-                            <button type="reset" class="btn btn-danger">Clear</button>
                        </div>
                         </div>
                     </form>
