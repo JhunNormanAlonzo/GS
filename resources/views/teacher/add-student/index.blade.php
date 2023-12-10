@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                           <h5 class="card-title">List of Students</h5>
-                            <a href="{{route('teacher.add.student.create')}}" class="btn btn-sm btn-primary mb-3">create </a>
+                            <a href="{{route('teacher.add.student.create')}}" class="btn btn-sm btn-primary mb-3">Add </a>
                           <table class="table" id="table">
                             <thead>
                                 <tr>

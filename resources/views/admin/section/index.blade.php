@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                           <h5 class="card-title">List of Section</h5>
-                            <a href="{{route('admin.section.create')}}" class="btn btn-sm btn-primary mb-3">create </a>
+                            <a href="{{route('admin.section.create')}}" class="btn btn-sm btn-primary mb-3">Add </a>
                             <div class="row">
                                 @foreach($sections->groupBy('year_level_id') as $yearLevel => $yearSections)
                                 <div class="col-6">

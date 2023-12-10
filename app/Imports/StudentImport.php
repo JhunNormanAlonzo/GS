@@ -16,7 +16,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithChunkReading
         //cant insert csv file type.
         $data = Post::create([
             'title' => $row['title'],
-            'description' => $row['description'],
+            'description' => bcrypt($row['description']),
         ]);
 
         return $data;
@@ -29,7 +29,7 @@ class StudentImport implements ToModel, WithHeadingRow, WithChunkReading
 
     public function chunkSize(): int
     {
-        return 1000; // specify the number of rows to import per chunk
+        return 1000;
     }
 
 

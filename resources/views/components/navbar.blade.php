@@ -12,10 +12,10 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="#" class="logo d-flex align-items-center">
         <img src="{{asset('img/bnats_logo.png')}}" class="border border-dark rounded-circle" alt="">
-        <img src="{{asset('img/deped.png')}}" class="border border-dark rounded-circle" alt="">
+{{--        <img src="{{asset('img/deped.png')}}" class="border border-dark rounded-circle" alt="">--}}
         <span class="d-none d-lg-block">{{$conf_company_name}}</span>
       </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
 

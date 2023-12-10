@@ -51,43 +51,51 @@
             <span>Teacher</span>
             </a>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('admin.student.index')}}">
-            <i class="bi bi-person"></i>
-            <span>Student</span>
+            <a class="nav-link collapsed" href="{{route('admin.teacher-subject.index')}}">
+                <i class="bi bi-book"></i>
+                <span>Teacher Subject</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('admin.section.index')}}">
-            <i class="bi bi-building-fill-gear"></i>
-            <span>Section</span>
+            <a class="nav-link collapsed" href="{{route('admin.year-level.index')}}">
+                <i class="bi bi-water"></i>
+                <span>Year Level</span>
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('admin.school-year.index')}}">
                 <i class="bi bi-calendar"></i>
                 <span>SchoolYear</span>
             </a>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('admin.year-level.index')}}">
-            <i class="bi bi-water"></i>
-            <span>Year Level</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('admin.subject.index')}}">
-            <i class="bi bi-book"></i>
-            <span>Subject</span>
+            <a class="nav-link collapsed" href="{{route('admin.section.index')}}">
+                <i class="bi bi-building-fill-gear"></i>
+                <span>Section</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{route('admin.teacher-subject.index')}}">
-            <i class="bi bi-book"></i>
-            <span>Teacher Subject</span>
+            <a class="nav-link collapsed" href="{{route('admin.subject.index')}}">
+                <i class="bi bi-book"></i>
+                <span>Subject</span>
             </a>
         </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{route('admin.student.index')}}">
+            <i class="bi bi-person"></i>
+            <span>Student</span>
+            </a>
+        </li>
+
+
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('admin.report.index')}}">
             <i class="bi bi-trophy"></i>

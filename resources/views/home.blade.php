@@ -108,10 +108,13 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12 ">
-                <h1 class="text-center text-white">BNATS Grading Management System</h1>
+                <div class="text-center">
+                    <img src="{{asset('img/bnats_logo.png')}}" width="200" height="200" alt="">
+                </div>
+                <h1 class="text-center text-white">BNATS Junior Student Information System</h1>
                 <div class="row">
                     <div class="col-2 b-warning">
-                        <img src="{{asset('img/bnats_logo.png')}}" width="200" height="200" alt="">
+
                         <img src="{{asset('img/deped.png')}}" width="200" height="200" alt="">
                     </div>
                     <div class="col-10 b-warning">

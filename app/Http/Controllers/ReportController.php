@@ -14,8 +14,14 @@ class ReportController extends Controller
 //            ->groupBy('student_id')
 //            ->with('student.user', 'yearLevel')
 //            ->get();
-
+        $groupedGrades = Grade::join('teacher_students', 'grades.teacher_student_id', '=', 'teacher_students.id')
+            ->groupBy('teacher_students.student_id')
+            ->select('teacher_students.student_id', DB::raw('AVG(grades.average) AS total_grade'))
+            ->get();
         $groupedGrades = Grade::all();
+
+//        dd($groupedGrades);
+
 
         return view("admin.report.index", compact('groupedGrades'));
 
