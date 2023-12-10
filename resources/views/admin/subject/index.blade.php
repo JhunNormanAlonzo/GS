@@ -11,7 +11,7 @@
                           <table class="table" id="table">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+{{--                                    <th>#</th>--}}
                                     <th>YearLevel</th>
                                     <th>Code</th>
                                     <th>Name</th>
@@ -22,7 +22,7 @@
                             <tbody>
                                 @foreach ($subjects as $subject)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
+{{--                                    <td>{{$loop->iteration}}</td>--}}
                                     <td>{{$subject->yearlevel->name}}</td>
                                     <td>{{$subject->code}}</td>
                                     <td>{{$subject->name}}</td>
