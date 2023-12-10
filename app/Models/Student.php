@@ -24,6 +24,8 @@ class Student extends Model
         return $this->belongsTo(YearLevel::class);
     }
 
+
+
     public function getAverageGradeAttribute()
     {
         if ($this->grades->isEmpty()) {

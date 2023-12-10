@@ -128,7 +128,7 @@ class TeacherStudentController extends Controller
 
         if ($status) {
             // Record already exists
-            customAlert('Exists!', 'Record already exists to you or to other teacher!', 'error');
+            customAlert('Same Subject and Year level Exists!', 'Record already exists to you or to other teacher!', 'error');
         } else {
             // Record doesn't exist, create a new one
             TeacherStudent::create($data);

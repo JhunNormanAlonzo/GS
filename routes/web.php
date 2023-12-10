@@ -84,10 +84,11 @@ Route::prefix('/teacher/')->as('teacher.')->middleware('role:teacher')->group(fu
 });
 
 Route::prefix('/student/')->as('student.')->middleware('role:student')->group(function () {
-    Route::get(
-        '/view-grade/year_level/{year_level_id}/section/{section_id}/subject/{subject_id}/{student_id}',
-        [GradeController::class, 'viewGrade']
-    )->name('view-grade.year.section.subject');
+//    Route::get(
+//        '/view-grade/year_level/{year_level_id}/section/{section_id}/subject/{subject_id}/{student_id}',
+//        [GradeController::class, 'viewGrade']
+//    )->name('view-grade.year.section.subject');
+    Route::get('/view-grade/{teacher_student}', [GradeController::class, 'viewGrade'])->name('view-grade');
     Route::get('/print-grade', [StudentReportController::class, 'printGrade'])->name('print-grade');
     Route::resource('/dashboard', StudentDashboardController::class)->names('dashboard');
 });
