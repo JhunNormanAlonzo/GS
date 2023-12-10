@@ -1,6 +1,6 @@
 <x-admin-layout>
     @section('title')
-        Dashboard
+        Teacher Dashboard
     @endsection
 
     @section('content')

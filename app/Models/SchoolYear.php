@@ -13,5 +13,7 @@ class SchoolYear extends Model
 
     protected $guarded = [];
 
-
+    public function teacherStudent(){
+        return $this->hasMany(TeacherStudent::class);
+    }
 }

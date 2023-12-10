@@ -36,7 +36,7 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item ">
                 <div class="nav-link">
-                    <a class="btn btn-outline-dark" href="{{route('login')}}"">Login</a>
+                    <a class="btn btn-outline-dark" href="{{route('login')}}">Login</a>
                 </div>
             </li>
         </ul>
@@ -112,6 +112,7 @@
                 <div class="row">
                     <div class="col-2 b-warning">
                         <img src="{{asset('img/bnats_logo.png')}}" width="200" height="200" alt="">
+                        <img src="{{asset('img/deped.png')}}" width="200" height="200" alt="">
                     </div>
                     <div class="col-10 b-warning">
                         <div class="row">

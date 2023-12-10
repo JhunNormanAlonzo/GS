@@ -22,6 +22,15 @@ class TeacherStudent extends Model
         return $this->belongsTo(Student::class);
     }
 
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
+
+    public function schoolYear(){
+        return $this->belongsTo(SchoolYear::class);
+    }
+
     protected static function boot()
     {
         parent::boot();

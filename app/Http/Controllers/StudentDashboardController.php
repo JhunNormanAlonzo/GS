@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Scopes\ActiveSchoolYearScope;
 use App\Models\Student;
 use App\Models\Subject;
+use App\Models\TeacherStudent;
 use Illuminate\Http\Request;
 
 class StudentDashboardController extends Controller
@@ -12,10 +14,23 @@ class StudentDashboardController extends Controller
     {
         $student = Student::where('user_id', auth()->user()->id)->first();
 
-        $subjects = Subject::where(
-            'year_level_id',
-            $student->year_level_id
-        )->get();
-        return view('student.index', compact('student', 'subjects'));
+//        $subjects = Subject::where(
+//            'year_level_id',
+//            $student->year_level_id
+//        )->get();
+
+        if(request()->has('active_school_year')){
+            $teacher_students = TeacherStudent::where('student_id', auth()->user()->student->id)
+                ->with(['subject','schoolYear'])
+                ->get();
+        }else{
+            $teacher_students = TeacherStudent::withoutGlobalScope(ActiveSchoolYearScope::class)->
+            where('student_id', auth()->user()->student->id)
+                ->with(['subject','schoolYear'])
+                ->get();
+        }
+
+
+        return view('student.index', compact('student', 'teacher_students'));
     }
 }

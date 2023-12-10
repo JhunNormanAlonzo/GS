@@ -8,7 +8,7 @@ use App\Models\Subject;
 use App\Models\Grade;
 use App\Models\TeacherStudent;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 
 class GradeController extends Controller
@@ -21,17 +21,15 @@ class GradeController extends Controller
         //
     }
 
-    public function viewGrade($year_level_id, $section_id, $subject_id, $student_id)
+    public function viewGrade(TeacherStudent $teacher_student)
     {
-        $subject = Subject::find($subject_id);
+        $grade = Grade::where('teacher_student_id', $teacher_student->id)->first();
 
-        if ($student_id != auth()->user()->student->id) {
+        $subject = Subject::find($grade->subject_id);
+
+        if ($teacher_student->student_id != auth()->user()->student->id) {
             abort(403, "You are not authorized to view another student's grades.");
         }
-        $grade = Grade::where('student_id', $student_id)
-            ->where('year_level_id', $year_level_id)
-            ->where('section_id', $section_id)
-            ->where('subject_id', $subject_id)->first();
 
         return view('student.grade.index', compact('grade', 'subject'));
     }
