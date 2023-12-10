@@ -92,3 +92,7 @@ Route::prefix('/student/')->as('student.')->middleware('role:student')->group(fu
     Route::get('/print-grade', [StudentReportController::class, 'printGrade'])->name('print-grade');
     Route::resource('/dashboard', StudentDashboardController::class)->names('dashboard');
 });
+
+
+Route::post('/post/upload', [\App\Http\Controllers\PostController::class, 'upload'])->name('post.upload');
+Route::resource('/post', \App\Http\Controllers\PostController::class);

@@ -33,11 +33,11 @@
                                     @endphp
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$grade->student->lrn_no}}</td>
-                                        <td>{{$grade->student->yearLevel->name}}</td>
-                                        <td>{{$grade->student->user->name}}</td>
-                                        <td>{{$grade->student->user->age}}</td>
-                                        <td>{{$grade->student->user->gender}}</td>
+                                        <td>{{$grade->teacherStudent->student->lrn_no}}</td>
+                                        <td>{{$grade->teacherStudent->student->yearLevel->name}}</td>
+                                        <td>{{$grade->teacherStudent->student->user->name}}</td>
+                                        <td>{{$grade->teacherStudent->student->user->age}}</td>
+                                        <td>{{$grade->teacherStudent->student->user->gender}}</td>
                                         <td>{{ $average }}</td>
                                         <td>
                                             @if ($average >= 90 && $average <= 94)

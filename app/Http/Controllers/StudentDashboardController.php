@@ -13,12 +13,6 @@ class StudentDashboardController extends Controller
     public function index()
     {
         $student = Student::where('user_id', auth()->user()->id)->first();
-
-//        $subjects = Subject::where(
-//            'year_level_id',
-//            $student->year_level_id
-//        )->get();
-
         if(request()->has('active_school_year')){
             $teacher_students = TeacherStudent::where('student_id', auth()->user()->student->id)
                 ->with(['subject','schoolYear'])
@@ -29,7 +23,6 @@ class StudentDashboardController extends Controller
                 ->with(['subject','schoolYear'])
                 ->get();
         }
-
 
         return view('student.index', compact('student', 'teacher_students'));
     }

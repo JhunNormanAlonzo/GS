@@ -22,6 +22,11 @@ class TeacherStudent extends Model
         return $this->belongsTo(Student::class);
     }
 
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
+
     public function subject()
     {
         return $this->belongsTo(Subject::class);

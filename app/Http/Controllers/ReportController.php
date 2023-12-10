@@ -10,10 +10,12 @@ class ReportController extends Controller
 {
     public function index()
     {
-        $groupedGrades = Grade::select('student_id', DB::raw('AVG(average) as average_grade'))
-            ->groupBy('student_id')
-            ->with('student.user', 'yearLevel') // Eager load student and user relationships
-            ->get();
+//        $groupedGrades = Grade::select('student_id', DB::raw('AVG(average) as average_grade'))
+//            ->groupBy('student_id')
+//            ->with('student.user', 'yearLevel')
+//            ->get();
+
+        $groupedGrades = Grade::all();
 
         return view("admin.report.index", compact('groupedGrades'));
 

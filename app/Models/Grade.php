@@ -22,6 +22,11 @@ class Grade extends Model
         return $this->belongsTo(Student::class);
     }
 
+    public function teacherStudent()
+    {
+        return $this->belongsTo(TeacherStudent::class);
+    }
+
     public function computeAverage($studentId)
     {
         $studentGrades = $this->where('student_id', $studentId)->pluck('average');
