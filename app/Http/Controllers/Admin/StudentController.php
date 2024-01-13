@@ -50,6 +50,8 @@ class StudentController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'password' => 'required',
+            'gender' => 'required',
+            'age' => 'required',
             'section_id' => 'required',
             'lrn_no' => 'required|unique:students,lrn_no',
             'address' => 'required',
@@ -57,6 +59,8 @@ class StudentController extends Controller
         $user = User::create([
             'name' =>  $request->name,
             'email' =>  $request->email,
+            'gender' =>  $request->gender,
+            'age' =>  $request->age,
             'gender' =>  $request->gender ?? '',
             'username' =>  $request->lrn_no ?? '',
             'age' =>  $request->age ?? '',
@@ -122,6 +126,8 @@ class StudentController extends Controller
         $section = Section::find($request->section_id);
         $this->validate($request, [
             'name' => 'required',
+            'age' => 'required',
+            'gender' => 'required',
             'email' => 'required|unique:table,column,except,id',
             'email' => 'required|unique:users,email,' . $id,
             'section_id' => 'required',
@@ -130,6 +136,8 @@ class StudentController extends Controller
         ]);
 
         $user->update([
+            'gender' =>  $request->gender,
+            'age' =>  $request->age,
             'name' =>  $request->name,
             'email' =>  $request->email,
             'gender' =>  $request->gender ?? '',
