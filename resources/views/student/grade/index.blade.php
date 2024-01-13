@@ -27,7 +27,7 @@
                                     <th>Fourth Grading</th>
                                     <th>Average</th>
                                     <th>Status</th>
-{{--                                    <th>Action</th>--}}
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,25 +38,33 @@
                                     <td>{{$grade->fourth_grading}}</td>
                                     <td>{{$average."%"}}</td>
                                     <td>{{$grade_status}}</td>
-{{--                                    <td>--}}
-{{--                                        <button data-bs-toggle="modal" data-bs-target="#commentGradeModal{{$grade->id}}" class="btn btn-sm btn-outline-warning">comment</button>--}}
-{{--                                        <div class="modal fade" id="commentGradeModal{{$grade->id}}">--}}
-{{--                                            <div class="modal-dialog">--}}
-{{--                                                <div class="modal-content">--}}
-{{--                                                    <div class="modal-header">--}}
-{{--                                                        Comment--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="modal-body">--}}
-{{--                                                        <div class="row">--}}
-{{--                                                            <div class="col-12">--}}
-{{--                                                                <textarea class="form-control" placeholder="What's in your mind, {{auth()->user()->name}}" name="comment" id="" rows="3">Name : {{auth()->user()->name }} Section : {{auth()->user()->student->section->name}} {{auth()->user()->student->yearLevel->name}}</textarea>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </td>--}}
+                                    <td>
+                                        <button data-bs-toggle="modal" data-bs-target="#commentGradeModal{{$grade->id}}" class="btn btn-sm btn-outline-warning">comment</button>
+                                        <form action="{{route('send.message')}}" method="POST">
+                                            @csrf
+                                            @method("POST")
+                                            <div class="modal fade" id="commentGradeModal{{$grade->id}}">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            Comment
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-12 mb-3">
+                                                                    <input type="text" name="email" hidden value="{{$grade->teacher_student_id}}">
+                                                                    <textarea class="form-control" rows="7"  placeholder="What's in your mind, {{auth()->user()->name}}" name="comment" id="" rows="3">Student Information : {{auth()->user()->name }} | Section : {{auth()->user()->student->section->name}} | {{auth()->user()->student->yearLevel->name}} .</textarea>
+                                                                </div>
+                                                                <div class="col-12 mb-3">
+                                                                    <button type="submit" class="btn btn-sm btn-primary">Send</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

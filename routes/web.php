@@ -40,6 +40,7 @@ Auth::routes();
 
 
 
+Route::post('/send-grade-comment', [\App\Http\Controllers\GradeCommentController::class, 'sendComment'])->name('send.message');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', function () {
