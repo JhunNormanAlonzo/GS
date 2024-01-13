@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -51,6 +53,29 @@ class UserController extends Controller
             showAlert("Created");
             return redirect()->route('admin.user.index');
         }
+    }
+
+    public function changePassword(Request $request){
+
+        $user = Auth::user();
+
+        $oldPassword = $request->old_password;
+        if (Hash::check($oldPassword, $user->getAuthPassword())){
+            if ($request->new_password === $request->confirm_password){
+                $user->update([
+                    'password' => bcrypt($request->new_password)
+                ]);
+
+                showAlert("Password Changed ");
+            }else{
+                customAlert('Failed!' , 'Password not matched.', 'error');
+            }
+        }else{
+            customAlert('Failed!' , 'Password incorrect.', 'error');
+        }
+
+        return redirect()->back();
+
     }
 
     /**

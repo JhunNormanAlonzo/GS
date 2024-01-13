@@ -52,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
             return redirect()->route('student.dashboard.index');
         }
     })->name('home');
+
+    Route::put('/change/password', [UserController::class, 'changePassword'])->name('change.password');
 });
 
 

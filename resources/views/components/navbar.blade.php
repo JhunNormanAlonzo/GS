@@ -87,6 +87,14 @@
             <li>
               <hr class="dropdown-divider">
             </li>
+              <li>
+                  <a type="button" data-bs-toggle="modal" data-bs-target="#changePasswordModal" class="dropdown-item d-flex align-items-center" >
+                      <i class="bi bi-lock"></i>
+                      <span>Change Password</span>
+                  </a>
+
+
+              </li>
             <li>
               <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="bi bi-box-arrow-right"></i>
@@ -97,7 +105,6 @@
                     @csrf
                 </form>
             </li>
-
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
 
@@ -105,3 +112,35 @@
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
+
+  <form action="{{route('change.password')}}" method="POST">
+      @csrf
+      @method('PUT')
+      <div class="modal fade" id="changePasswordModal">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Change Password</h5>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                          <div class="col-12 mb-2">
+                              <input type="password" class="form-control" name="old_password" placeholder="Old Password">
+                          </div>
+                          <div class="col-12 mb-2">
+                              <input type="password" class="form-control" name="new_password" placeholder="New Password">
+                          </div>
+
+                          <div class="col-12 mb-2">
+                              <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-sm btn-outline-danger">Change Password</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </form>
+
