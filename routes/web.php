@@ -39,6 +39,8 @@ Route::get('/', function () {
 Auth::routes();
 
 
+Route::get('report/card', [\App\Http\Controllers\ReportCardController::class, 'download']);
+Route::get('report/card/view', [\App\Http\Controllers\ReportCardController::class, 'index']);
 
 Route::post('/send-grade-comment', [\App\Http\Controllers\GradeCommentController::class, 'sendComment'])->name('send.message');
 
