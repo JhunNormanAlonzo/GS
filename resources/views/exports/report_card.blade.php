@@ -6,19 +6,6 @@
     $gender = "10 - FARADAY";
     $age = "10 - FARADAY";
     $school_year = "10 - FARADAY";
-
-
-
-    $subjects = array(
-        'english',
-        'math',
-        'filipino',
-        'science',
-        'gmrc',
-        'ap',
-        'mapeh',
-        'pe',
-    );
 @endphp
 
 <table border="1">
@@ -65,31 +52,30 @@
         </th>
     </tr>
 
-
     <tr>
         <td colspan="3">
-            <strong>Name: {{$fullname}} </strong>
+            <strong>Name: {{$student->user->name}} </strong>
         </td>
         <td colspan="4">
-            <strong>Grade and Section: {{$grade_section}} </strong>
+            <strong>Grade and Section: {{$student->yearLevel->name | $student->section->name}} </strong>
         </td>
     </tr>
 
     <tr>
         <td colspan="3">
-            <strong>LRN: {{$lrn}}</strong>
+            <strong>LRN: {{$student->lrn_no}}</strong>
         </td>
         <td colspan="4">
-            <strong>Sex: {{$gender}} </strong>
+            <strong>Sex: {{$student->user->gender}} </strong>
         </td>
     </tr>
 
     <tr>
         <td colspan="3">
-            <strong>Age: {{$age}}</strong>
+            <strong>Age: {{$student->user->age}}</strong>
         </td>
         <td colspan="4">
-            <strong>School Year: {{$school_year}} </strong>
+            <strong>School Year: {{$activeSchoolYearName}} </strong>
         </td>
     </tr>
 
@@ -104,15 +90,15 @@
 
 
 
-    @foreach($subjects as $subject)
+    @foreach($grades as $grade)
         <tr>
-            <td>{{$subject}}</td>
-            <td>10</td>
-            <td>10</td>
-            <td>10</td>
-            <td>10</td>
-            <td>10</td>
-            <td>10</td>
+            <td>{{$grade->subject->name}}</td>
+            <td>{{$grade->first_grading}}</td>
+            <td>{{$grade->second_grading}}</td>
+            <td>{{$grade->third_grading}}</td>
+            <td>{{$grade->fourth_grading}}</td>
+            <td>{{$grade->average}}</td>
+            <td>{{($grade->average <= 74) ? "failed" : "passed"}}</td>
         </tr>
     @endforeach
     <tr>
