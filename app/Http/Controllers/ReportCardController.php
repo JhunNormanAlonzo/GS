@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exports\GradeCardExport;
+use App\Models\Grade;
+use App\Models\SchoolYear;
+use App\Models\Student;
+use App\Models\TeacherStudent;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -12,9 +16,13 @@ class ReportCardController extends Controller
      * Display a listing of the resource.
      */
 
-    public function download(){
+
+    public function download(Request $request){
+
+
+
         $rand = date("YmdHis");
-        return Excel::download(new GradeCardExport(), "ReportCard-$rand.xlsx" );
+        return Excel::download(new GradeCardExport($request), "ReportCard-$rand.xlsx" );
     }
     public function index()
     {

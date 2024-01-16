@@ -21,7 +21,15 @@
                             <tbody>
                                 @foreach ($advisories as $student)
                                 <tr>
-                                    <td><a href="#" class="btn btn-sm btn-primary">View Grades</a></td>
+                                    <td>
+                                        <form action="{{route('dl.grade')}}" method="POST">
+                                            @csrf
+                                            @method("POST")
+                                            <input type="text" name="student_id" hidden value="{{$student->id}}">
+                                            <button class="btn btn-sm btn-primary">View Grades</button>
+                                        </form>
+
+                                    </td>
                                     <td>{{$student->lrn_no}}</td>
                                     <td>{{$student->user->name}}</td>
                                     <td>{{$student->user->email}}</td>
